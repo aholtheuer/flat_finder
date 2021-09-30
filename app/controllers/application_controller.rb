@@ -7,8 +7,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def authorize
-    redirect_to login_url, alert: "Not authorized" if current_user.nil?
+  def require_user
+    redirect_to login_path, alert: "You must be logged in to perform that action" if current_user.nil?
   end
+
   
 end

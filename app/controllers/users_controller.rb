@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:new, :create]
+  before_action :requiere_same_user, except: [:new, :create]
 
-  # GET /users or /users.json
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1 or /users/1.json
   def show
+    @search_params = @user.search_param
   end
 
   # GET /users/new
@@ -25,6 +22,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to search_params_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
@@ -50,8 +48,9 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
+    session[:user_id] = nil
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,5 +64,12 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    end
+
+    def requiere_same_user
+      if @user != current_user
+        flash.alert = "You can only edit your own user data"
+        redirect_to edit_user_path(current_user)
+      end
     end
 end
