@@ -5,6 +5,8 @@ class SearchParamsController < ApplicationController
 
   def index
     @search_params = SearchParam.all
+    flash.alert = "You are not authorized to perform that action"
+    redirect_to current_user
   end
 
   def show

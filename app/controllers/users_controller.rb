@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user, except: [:new, :create]
-  before_action :requiere_same_user, except: [:new, :create]
+  before_action :requiere_same_user, except: [:new, :create, :index]
 
   def show
     @search_params = @user.search_param
+  end
+
+  def index
+    @users = User.all
+    flash.alert = "You are not authorized to perform that action"
+    redirect_to current_user
   end
 
   # GET /users/new
