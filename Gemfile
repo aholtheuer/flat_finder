@@ -25,7 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 
 #Added Gems ####################################################
-
+gem 'rubocop', '~> 1.22', require: false
 ################################################################
 
 # Reduces boot times through caching; required in config/boot.rb
