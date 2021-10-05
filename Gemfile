@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
@@ -26,6 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 #Added Gems ####################################################
 gem 'rubocop', '~> 1.22', require: false
+gem 'kimurai'
 ################################################################
 
 # Reduces boot times through caching; required in config/boot.rb
