@@ -64,7 +64,4 @@ class SearchParamsController < ApplicationController
     end
   end
 
-
-
-
 end
