@@ -37,7 +37,7 @@ module SearchParamsHelper
   
   def price_url(price_min, price_max)
     {
-      portal_inmobiliario: price_min | price_max ? "_PriceRange_" + price_min.to_i.to_s + "CLP-" + price_max.to_i.to_s + "CLP" : '',
+      portal_inmobiliario: price_min || price_max ? "_PriceRange_" + price_min.to_i.to_s + "CLP-" + price_max.to_i.to_s + "CLP" : '',
     }
   end
 end

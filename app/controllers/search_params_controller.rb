@@ -1,3 +1,5 @@
+require_relative '../scrapper/portal_spider.rb'
+
 class SearchParamsController < ApplicationController
   before_action :set_search_param, only: [:show, :edit, :update, :destroy]
   before_action :require_user
@@ -20,6 +22,8 @@ class SearchParamsController < ApplicationController
     @search_param = SearchParam.new(search_param_params)
     @search_param.user = current_user
     if @search_param.save
+      #byebug
+      PortalSpider.parse!(:parse, url: helpers.search_urls(@search_param)[:portal_inmobiliario])
       flash[:notice] = "Search Created Succesfully!"
       redirect_to @search_param
     else

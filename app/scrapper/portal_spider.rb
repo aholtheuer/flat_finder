@@ -4,7 +4,7 @@ require 'kimurai'
 class PortalSpider < Kimurai::Base
   @name = 'portal_inmobiliario_spider'
   @driver = :mechanize
-  @start_urls = ["https://portalinmobiliario.com/arriendo/departamento/las-condes-metropolitana"]
+  @start_urls = []
   @config = {
     user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36",
     retry_request_errors: [{ error: RuntimeError, skip_on_failure: true },
