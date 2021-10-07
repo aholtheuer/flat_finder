@@ -17,6 +17,7 @@ class SearchParamsController < ApplicationController
   end 
 
   def create
+    byebug
     @search_param = SearchParam.new(search_param_params)
     @search_param.user = current_user
     #byebug
@@ -49,7 +50,7 @@ class SearchParamsController < ApplicationController
   private
 
   def search_param_params
-    params.require(:search_param).permit(:title, :comuna)
+    params.require(:search_param).permit(:title, :comuna, :bedroom, :bath, :price_min, :price_max)
   end
 
   def set_search_param
