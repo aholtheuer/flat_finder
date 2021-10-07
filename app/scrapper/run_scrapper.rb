@@ -1,5 +1,5 @@
-require_relative 'scrapper_template.rb'
-require 'byebug'
+require_relative 'spider.rb'
 
-PortalSpider.parse!(:parse, url: urls)
+url = "https://www.portalinmobiliario.com/arriendo/departamento/vitacura-metropolitana/_PriceRange_0CLP-800000CLP_BEDROOMS_2-2"
+PortalSpider.parse!(:parse, url: url)
 
