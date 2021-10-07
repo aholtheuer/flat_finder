@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_125021) do
+ActiveRecord::Schema.define(version: 2021_10_07_190829) do
+
+  create_table "flats", force: :cascade do |t|
+    t.string "href"
+    t.string "name"
+    t.string "price"
+    t.string "specs"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "search_param_flats", force: :cascade do |t|
+    t.integer "search_param_id"
+    t.integer "flat_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "search_params", force: :cascade do |t|
     t.string "title"

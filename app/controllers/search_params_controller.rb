@@ -23,7 +23,8 @@ class SearchParamsController < ApplicationController
     @search_param.user = current_user
     if @search_param.save
       #byebug
-      PortalSpider.parse!(:parse, url: helpers.search_urls(@search_param)[:portal_inmobiliario])
+      PortalSpider.parse!(:parse, url: helpers.search_urls(@search_param)[:portal_inmobiliario],
+                          data: {search_param: @search_param})
       flash[:notice] = "Search Created Succesfully!"
       redirect_to @search_param
     else
