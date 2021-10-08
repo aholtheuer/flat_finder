@@ -37,7 +37,7 @@ class PortalSpider < Kimurai::Base
     specs_elements = response.css('div.ui-pdp-highlighted-specs-res__icon-label').first.next_sibling.parent
     item[:specs] =  specs_elements.css('span')&.map(&:text)&.join('//')
     item[:location] = response.css('div.ui-vip-location__subtitle p')&.text.squish
-    save_to "scraped_flats_test.json", item, format: :pretty_json, position: false
+    #save_to "scraped_flats_test.json", item, format: :pretty_json, position: false
     @flat = Flat.new(item)
     if @flat.save
       @search_param_flat = SearchParamFlat.new({search_param_id: data[:search_param][:id],

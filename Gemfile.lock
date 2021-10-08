@@ -206,6 +206,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rbcat (0.2.1)
+    redis (4.4.0)
     regexp_parser (2.1.1)
     rexml (3.2.5)
     rubocop (1.22.0)
@@ -235,6 +236,10 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sidekiq (6.2.2)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -299,6 +304,7 @@ DEPENDENCIES
   rubocop (~> 1.22)
   sass-rails (>= 6)
   selenium-webdriver
+  sidekiq
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)

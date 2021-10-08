@@ -27,6 +27,7 @@ gem 'bcrypt', '~> 3.1.7'
 #Added Gems ####################################################
 gem 'rubocop', '~> 1.22', require: false
 gem 'kimurai'
+gem 'sidekiq'
 ################################################################
 
 # Reduces boot times through caching; required in config/boot.rb

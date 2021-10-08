@@ -20,8 +20,6 @@ class SearchParamsController < ApplicationController
     @search_param = SearchParam.new(search_param_params)
     @search_param.user = current_user
     if @search_param.save
-      # PortalSpider.parse!(:parse, url: helpers.search_urls(@search_param)[:portal_inmobiliario],
-      #                     data: {search_param: @search_param})
       SpiderJob.perform_later(@search_param)
       flash[:notice] = "Search Created Succesfull! A Spider is entring the portals :)"
       redirect_to @search_param.user
@@ -35,8 +33,12 @@ class SearchParamsController < ApplicationController
 
   def update
     if @search_param.update(search_param_params)
-      flash[:notice] = "Search Updated Succesfully"
-      redirect_to @search_param
+      # Flats are not longer representative of that search.
+      byebug
+      SearchParamFlat.where({search_param_id: @search_param.id}).destroy_all
+      SpiderJob.perform_later(@search_param)
+      flash[:notice] = "Search Updated Succesfully! A Spider is entring the portals :)"
+      redirect_to @search_param.user
     else
       render('edit')
     end
