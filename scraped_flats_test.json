@@ -1,23 +1,100 @@
 [
   {
-    "href": "https://www.portalinmobiliario.com/MLC-905276876-departamento-recien-remodelado-en-pleno-alonso-de-cordova-_JM",
-    "name": "Departamento Recién Remodelado En Pleno Alonso De Córdova",
-    "price": "UF57//$1.716.635",
-    "specs": "150 m² totales//3 dormitorios//3 baños",
-    "location": "Los Laureles 900 - 1200, Vitacura, Chile, Parque Bicentenario, Vitacura, RM (Metropolitana)"
+    "href": "https://www.portalinmobiliario.com/MLC-908372431-exclusivo-departamento-en-arriendo-en-las-condes-_JM",
+    "name": "Exclusivo Departamento En Arriendo En Las Condes",
+    "price": "$800.000",
+    "specs": "110 m² totales//3 dormitorios//2 baños",
+    "location": "Los Militares, Las Condes, Chile, Nueva Las Condes, Las Condes, RM (Metropolitana)"
   },
   {
-    "href": "https://www.portalinmobiliario.com/MLC-912586456-lo-curro-_JM",
-    "name": "Lo Curro",
-    "price": "$1.800.000",
-    "specs": "244 m² totales//3 dormitorios//2 baños",
-    "location": "Lo Curro, Lo Curro, Vitacura, RM (Metropolitana)"
+    "href": "https://www.portalinmobiliario.com/MLC-906295275-pontevedra-martin-alonso-pinzon-_JM",
+    "name": "Pontevedra / Martin Alonso Pinzón",
+    "price": "$760.000",
+    "specs": "100 m² totales//3 dormitorios//2 baños",
+    "location": "Pontevedra / Martin Alonso Pinzón, Rotonda Atenas, Las Condes, RM (Metropolitana)"
   },
   {
-    "href": "https://www.portalinmobiliario.com/MLC-916368807-departamento-avenida-presidente-kennedy-_JM",
-    "name": "Departamento Avenida Presidente Kennedy",
-    "price": "$1.200.000",
-    "specs": "120 m² totales//3 dormitorios//3 baños",
-    "location": "Avenida Presidente Kennedy, Pío XI, Vitacura, RM (Metropolitana)"
+    "href": "https://www.portalinmobiliario.com/arriendo/departamento/las-condes-metropolitana/6330519-las-condes-uda",
+    "name": "Se Arrienda-lindo Depto En Excelente Ubicación De Las",
+    "price": "$790.000",
+    "specs": "108 m² totales//3 dormitorios//2 baños",
+    "location": "Las Condes 12600 - 12900, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/MLC-910661053-vespucio-sur-vaticano-3-dormitorios-_JM",
+    "name": "Vespucio Sur / Vaticano / 3 Dormitorios",
+    "price": "UF19//$572.288",
+    "specs": "83 m² totales//3 dormitorios//2 baños",
+    "location": "Vespucio Sur / Vaticano / 3 Dormitorios, Vaticano, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/MLC-910791239-departamento-en-arriendo-de-3-dorm-en-las-condes-_JM",
+    "name": "Departamento En Arriendo De 3 Dorm. En Las Condes",
+    "price": "$730.000",
+    "specs": "111 m² totales//3 dormitorios//2 baños",
+    "location": "Fontana Rosa, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/MLC-914342258-amlio-departamento-en-primer-piso-_JM",
+    "name": "Amlio Departamento En Primer Piso",
+    "price": "$730.000",
+    "specs": "113 m² totales//3 dormitorios//2 baños",
+    "location": "Fontana Rosa, 7077, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/MLC-914244208-depto-martin-a-pinzon-colon-hnando-magallanes-_JM",
+    "name": "Depto Martin A. Pinzón - Colon - Hnando Magallanes",
+    "price": "$750.000",
+    "specs": "87 m² totales//3 dormitorios//2 baños",
+    "location": "Martin Alonso Pinzon 6690, 6690, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/arriendo/departamento/las-condes-metropolitana/6345065-fontana-rosa-uda",
+    "name": "Iv Centenario",
+    "price": "$750.000",
+    "specs": "125 m² totales//3 dormitorios//2 baños",
+    "location": "Fontana Rosa 6900 - 7200, Rotonda Atenas, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/arriendo/departamento/las-condes-metropolitana/6337900-asturias-350-uda",
+    "name": "Lindo Departamento, Sector Presidente Errazuriz",
+    "price": "$750.000",
+    "specs": "87 m² totales//3 dormitorios//2 baños",
+    "location": "Asturias 300 - 600, Metro Escuela Militar, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/arriendo/departamento/las-condes-metropolitana/6341569-colon-7000-departamento-g51-uda",
+    "name": "Dpto. Familiar, Cerca Rotonda Atenas",
+    "price": "$680.000",
+    "specs": "80 m² totales//3 dormitorios//2 baños",
+    "location": "Colon 7000 - Departamento G51, San Carlos de Apoquindo, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/MLC-913070362-escandinavia-oslo-metro-manquehue-_JM",
+    "name": "Escandinavia / Oslo / Metro Manquehue",
+    "price": "$800.000",
+    "specs": "94 m² totales//3 dormitorios//2 baños",
+    "location": "Escandinavia 300 - 600, Las Condes, Región Metropolitana, Chile, Metro Manquehue - Apumanque, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/MLC-914289560-excelente-ubicacion-cerca-de-todo-est-y-bodega-_JM",
+    "name": "Excelente Ubicación Cerca De Todo, Est. Y Bodega",
+    "price": "$700.000",
+    "specs": "83 m² totales//3 dormitorios//2 baños",
+    "location": "Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/MLC-917728981-duena-arrienda-dpto-cerca-apumanque-las-condes-_JM",
+    "name": "Dueña Arrienda Dpto Cerca Apumanque Las Condes",
+    "price": "$750.000",
+    "specs": "100 m² totales//3 dormitorios//2 baños",
+    "location": "Las Malvas 270, Las Condes, Chile, Metro Manquehue - Apumanque, Las Condes, RM (Metropolitana)"
+  },
+  {
+    "href": "https://www.portalinmobiliario.com/MLC-916419118-estupendo-departamento-vista-despejada-quinchamali-_JM",
+    "name": "Estupendo Departamento Vista Despejada Quinchamali",
+    "price": "$680.000",
+    "specs": "90 m² totales//3 dormitorios//2 baños",
+    "location": "Avenida Las Condes 14173, Las Condes, Chile, Quinchamalí, Las Condes, RM (Metropolitana)"
   }
 ]

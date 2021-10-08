@@ -13,7 +13,6 @@ class PortalSpider < Kimurai::Base
   def parse(response, url:, data: {})    
     response.css('ol.ui-search-layout li a.ui-search-result__image').each do |flat|
       next unless unique?(:flat_url, flat[:href])
-        byebug
         begin
           href_flat = flat[:href][0..flat[:href].index('#position')-1]
           if Flat.exists?({href: href_flat}) 
@@ -31,7 +30,6 @@ class PortalSpider < Kimurai::Base
   end
 
   def parse_flat(response, url:, data: {})
-    byebug
     item = {}
     item[:href] = data[:href]
     item[:name] = response.css('h1.ui-pdp-title')&.text&.squish
