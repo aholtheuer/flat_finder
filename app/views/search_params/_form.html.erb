@@ -17,9 +17,30 @@
   </div>
 
   <div>
-    <%= form.label :comuna, 'Comuna' %>
-    <%= form.select :comuna, [["Las Condes", "las-condes"], ["Vitacura", "vitacura"]]%>
+  <%= form.label :comuna, 'Comuna' %>
+  <%= form.select :comuna, ["Las Condes", "Vitacura"]%>
   </div>
+
+  <div>
+    <%= form.label :bedroom, 'Habitaciones' %>
+    <%= form.number_field :bedroom, in: 1..5, step: 1 %>
+  </div>
+
+  <div>
+    <%= form.label :bath, 'Baños' %>
+    <%= form.number_field :bath, in: 1..5, step: 1 %>
+  </div>
+
+  <div>
+  <%= form.label :price_min, 'Precio Mínimo' %>
+  <%= form.number_field :price_min, in: 0..10000000, step: 100000 %>
+  </div>
+  
+  <div>
+  <%= form.label :price_max, 'Precio Máximo' %>
+  <%= form.number_field :price_max, in: 0..10000000, step: 100000 %>
+  </div> 
+
 
   <div class="actions">
     <%= form.submit %>

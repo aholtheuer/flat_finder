@@ -3,6 +3,10 @@
     <tr>
       <th>Title</th>
       <th>Comuna</th>
+      <th>Habitaciones</th>
+      <th>Baños</th>
+      <th>Precio Mínimo</th>
+      <th>Precio Máximo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -11,7 +15,11 @@
     <% obj.each do |s| %>
       <tr>
         <td><%= s.title %></td>
-        <td><%= s.comuna.gsub('-', ' ').titleize() %></td>
+        <td><%= s.comuna %></td>
+        <td><%= s.bedroom %></td>
+        <td><%= s.bath %></td>
+        <td><%= s.price_min %></td>
+        <td><%= s.price_max %></td>
         <td><%= link_to 'Show', s %></td>
         <td><%= link_to 'Edit', edit_search_param_path(s) %></td>
         <td><%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %></td>

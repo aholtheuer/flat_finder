@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Características</th>
+      <th>Ubicación</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% obj.each do |flat| %>
+      <tr>
+        <td><%= flat.name %></td>
+        <td><%= flat.price %></td>
+        <td><%= flat.specs %></td>
+        <td><%= flat.location %></td>
+        <td><%= link_to 'Ver', flat.href, target: :_blank%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

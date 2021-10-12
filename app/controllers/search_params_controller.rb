@@ -19,10 +19,18 @@ class SearchParamsController < ApplicationController
   def create
     @search_param = SearchParam.new(search_param_params)
     @search_param.user = current_user
-    #byebug
     if @search_param.save
-      flash[:notice] = "Search Created Succesfully!"
-      redirect_to @search_param
+      SpiderJob.perform_later(@search_param.attributes)
+      cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
+                                        cron: '*/10 * * * *', 
+                                        class: 'SpiderJob', 
+                                        args: @search_param.attributes)
+      if cron_job.valid?
+        cron_job.save
+      end
+
+      flash[:notice] = "Search Created Succesfull! A Spider is entring the portals :)"
+      redirect_to @search_param.user
     else
       render 'new'
     end
@@ -33,14 +41,26 @@ class SearchParamsController < ApplicationController
 
   def update
     if @search_param.update(search_param_params)
-      flash[:notice] = "Search Updated Succesfully"
-      redirect_to @search_param
+      # Flats are not longer representative of that search.
+      SearchParamFlat.where({search_param_id: @search_param.id}).destroy_all
+      SpiderJob.perform_later(@search_param.attributes)
+      cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
+                                        cron: '*/10 * * * *', 
+                                        class: 'SpiderJob', 
+                                        args: @search_param.attributes)
+      if cron_job.valid?
+        cron_job.save
+      end
+      flash[:notice] = "Search Updated Succesfully! A Spider is entring the portals :)"
+      redirect_to @search_param.user
     else
       render('edit')
     end
   end
 
   def destroy
+    cron_job = Sidekiq::Cron::Job.find "SpiderJob_SP#{@search_param.id}"
+    cron_job.disable!
     @search_param.destroy
     flash[:notice] = "Search Deleted Succesfully"
     redirect_to current_user
@@ -49,7 +69,7 @@ class SearchParamsController < ApplicationController
   private
 
   def search_param_params
-    params.require(:search_param).permit(:title, :comuna)
+    params.require(:search_param).permit(:title, :comuna, :bedroom, :bath, :price_min, :price_max)
   end
 
   def set_search_param
@@ -63,8 +83,5 @@ class SearchParamsController < ApplicationController
       redirect_to current_user
     end
   end
-
-
-
 
 end
