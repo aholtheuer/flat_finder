@@ -40,7 +40,6 @@ class PortalSpider < Kimurai::Base
   end
 
   def parse_flat(response, url:, data: {})
-    byebug
     item = {}
     item[:href] = data[:href]
     item[:name] = response.css('h1.ui-pdp-title')&.text&.squish
