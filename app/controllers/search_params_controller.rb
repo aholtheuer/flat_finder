@@ -21,13 +21,13 @@ class SearchParamsController < ApplicationController
     @search_param.user = current_user
     if @search_param.save
       SpiderJob.perform_later(@search_param.id)
-      # cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
-      #                                   cron: '*/10 * * * *', 
-      #                                   class: 'SpiderJob', 
-      #                                   args: @search_param.id)
-      # if cron_job.valid?
-      #   cron_job.save
-      # end
+      cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
+                                        cron: '*/10 * * * *', 
+                                        class: 'SpiderJob', 
+                                        args: @search_param.id)
+      if cron_job.valid?
+        cron_job.save
+      end
 
       flash[:notice] = "Search Created Succesfull! A Spider is entring the portals :)"
       redirect_to @search_param.user
@@ -44,13 +44,13 @@ class SearchParamsController < ApplicationController
       # Flats are not longer representative of that search.
       SearchParamFlat.where({search_param_id: @search_param.id}).destroy_all
       SpiderJob.perform_later(@search_param.id)
-      # cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
-      #                                   cron: '*/10 * * * *', 
-      #                                   class: 'SpiderJob', 
-      #                                   args: @search_param.id)
-      # if cron_job.valid?
-      #   cron_job.save
-      # end
+      cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
+                                        cron: '*/10 * * * *', 
+                                        class: 'SpiderJob', 
+                                        args: @search_param.id)
+      if cron_job.valid?
+        cron_job.save
+      end
       flash[:notice] = "Search Updated Succesfully! A Spider is entring the portals :)"
       redirect_to @search_param.user
     else
@@ -61,6 +61,7 @@ class SearchParamsController < ApplicationController
   def destroy
     cron_job = Sidekiq::Cron::Job.find "SpiderJob_SP#{@search_param.id}"
     cron_job.disable!
+    cron_job.destroy
     @search_param.destroy
     flash[:notice] = "Search Deleted Succesfully"
     redirect_to current_user
