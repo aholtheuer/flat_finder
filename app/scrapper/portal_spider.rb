@@ -14,6 +14,10 @@ class PortalSpider < Kimurai::Base
   }
   
   def parse(response, url:, data: {})  
+    #byebug
+    flats = []
+    search_param_flats = []
+    @search_param = data[:search_param]
     response.css('ol.ui-search-layout li a.ui-search-result__image').each do |flat|
       next unless unique?(:flat_url, flat[:href])
         begin
@@ -22,12 +26,14 @@ class PortalSpider < Kimurai::Base
 
           #if flat does not exist then scrape flat page
           if !@flat
-            request_to :parse_flat, url: flat[:href], data: data.merge({href: href_flat})
+            flat_item = request_to :parse_flat, url: flat[:href], data: data.merge({href: href_flat})
+            flats << flat_item
           # if flat exist in db but is not associeted to search_param then hit search_param_flats db
-          elsif !@flat.search_params.exists?({id: data[:search_param]['id']})
-            @search_param_flat = SearchParamFlat.new({search_param_id: data[:search_param]['id'],
-                                                      flat_id: @flat.id})
-            @search_param_flat.save  
+          elsif !@flat.search_params.exists?({id: @search_param['id']})
+             search_param_flats << @flat.id
+            # @search_param_flat = SearchParamFlat.new({search_param_id: data[:search_param]['id'],
+            #                                           flat_id: @flat.id})
+            # @search_param_flat.save  
           # else then go to next
           else 
             next
@@ -37,9 +43,11 @@ class PortalSpider < Kimurai::Base
           next
         end
     end
+    { flats: flats, search_param_flats: search_param_flats }
   end
 
   def parse_flat(response, url:, data: {})
+    #byebug
     item = {}
     item[:href] = data[:href]
     item[:name] = response.css('h1.ui-pdp-title')&.text&.squish
@@ -47,15 +55,15 @@ class PortalSpider < Kimurai::Base
     specs_elements = response.css('div.ui-pdp-highlighted-specs-res__icon-label').first.next_sibling.parent
     item[:specs] =  specs_elements.css('span')&.map(&:text)&.join('//')
     item[:location] = response.css('div.ui-vip-location__subtitle p')&.text.squish
-    
-    @flat = Flat.new(item)
-    if @flat.save
-      @search_param_flat = SearchParamFlat.new({search_param_id: data[:search_param]['id'],
-                                                 flat_id: @flat.id})
-      @search_param_flat.save
-    else
-      #do something else                                          
-    end
+    item 
+    # @flat = Flat.new(item)
+    # if @flat.save
+    #   @search_param_flat = SearchParamFlat.new({search_param_id: data[:search_param]['id'],
+    #                                              flat_id: @flat.id})
+    #   @search_param_flat.save
+    # else
+    #   #do something else                                          
+    # end
   end
 
 end

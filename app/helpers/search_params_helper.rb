@@ -2,12 +2,12 @@
 require 'byebug'
 
 module SearchParamsHelper
-  def search_urls(search_param_hash)
+  def search_urls(search_param)
     hash = {
-      comuna: comuna_url(search_param_hash['comuna']), 
-      bedroom: bedroom_url(search_param_hash['bedroom']),
-      bath: bath_url(search_param_hash['bath']),
-      price: price_url(search_param_hash['price_min'], search_param_hash['price_max']),
+      comuna: comuna_url(search_param['comuna']), 
+      bedroom: bedroom_url(search_param['bedroom']),
+      bath: bath_url(search_param['bath']),
+      price: price_url(search_param['price_min'], search_param['price_max']),
     }
     {
       portal_inmobiliario: "https://www.portalinmobiliario.com/arriendo/departamento/#{hash[:comuna][:portal_inmobiliario]}-metropolitana/#{hash[:price][:portal_inmobiliario]}#{hash[:bedroom][:portal_inmobiliario]}#{hash[:bath][:portal_inmobiliario]}",
