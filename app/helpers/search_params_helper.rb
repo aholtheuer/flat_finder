@@ -1,6 +1,4 @@
 #require 'app/models/search_param.rb'
-require 'byebug'
-
 module SearchParamsHelper
   def search_urls(search_param)
     hash = {
