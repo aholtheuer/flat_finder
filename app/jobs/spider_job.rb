@@ -26,9 +26,7 @@ class SpiderJob < ApplicationJob
     # Send email only of the new flats
     @search_param_flats = @search_param.search_param_flats.where(emailed_at: nil)
     if @search_param_flats.any?
-      SpiderMailer.with(search_param: @search_param,
-                        # search_param_flats: @search_param_flats
-      ).spider_email.deliver_later
+      SpiderMailer.with(search_param: @search_param).spider_email.deliver_later
     end
   end
 

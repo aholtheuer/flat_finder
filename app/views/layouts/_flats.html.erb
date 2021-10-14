@@ -5,6 +5,7 @@
       <th>Precio</th>
       <th>Características</th>
       <th>Ubicación</th>
+      <th>Fecha Envio</th>
       <th></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
         <td><%= flat.price %></td>
         <td><%= flat.specs %></td>
         <td><%= flat.location %></td>
+        <td><%= time_ago_in_words(flat.emailed_at) %></td>
         <td><%= link_to 'Ver', flat.href, target: :_blank%></td>
       </tr>
     <% end %>

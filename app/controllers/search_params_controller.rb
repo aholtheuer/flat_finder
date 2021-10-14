@@ -10,6 +10,7 @@ class SearchParamsController < ApplicationController
   end
 
   def show
+    @flats = Flat.select("flats.*, search_param_flats.emailed_at").joins(:search_param_flats).where(search_param_flats: { search_param_id: @search_param.id }).order(:emailed_at)
   end
 
   def new
