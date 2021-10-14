@@ -1,0 +1,14 @@
+  <p>
+    Hi <%= @search_param.user.username %>!
+  </p>
+  <p>
+    The spider found new Flats for your search <i><%= @search_param.title %></i>  
+  </p>
+    <p>
+      The total found was <%= @search_param_flats.count %> flat(s)!
+    </p>
+    <p>
+      You can watch all the flats <%= link_to 'here', search_param_url(@search_param)%> 
+      associeted with your search.
+    </p>
+    <p>Happy hunting!</p>

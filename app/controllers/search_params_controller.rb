@@ -20,11 +20,11 @@ class SearchParamsController < ApplicationController
     @search_param = SearchParam.new(search_param_params)
     @search_param.user = current_user
     if @search_param.save
-      SpiderJob.perform_later(@search_param.attributes)
+      SpiderJob.perform_later(@search_param.id)
       cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
-                                        cron: '*/10 * * * *', 
+                                        cron: "#{@search_param.updated_at.min} #{@search_param.updated_at.hour} * * *", 
                                         class: 'SpiderJob', 
-                                        args: @search_param.attributes)
+                                        args: @search_param.id)
       if cron_job.valid?
         cron_job.save
       end
@@ -43,11 +43,11 @@ class SearchParamsController < ApplicationController
     if @search_param.update(search_param_params)
       # Flats are not longer representative of that search.
       SearchParamFlat.where({search_param_id: @search_param.id}).destroy_all
-      SpiderJob.perform_later(@search_param.attributes)
+      SpiderJob.perform_later(@search_param.id)
       cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
-                                        cron: '*/10 * * * *', 
+                                        cron: "#{@search_param.updated_at.min} #{@search_param.updated_at.hour} * * *", 
                                         class: 'SpiderJob', 
-                                        args: @search_param.attributes)
+                                        args: @search_param.id)
       if cron_job.valid?
         cron_job.save
       end
@@ -61,6 +61,7 @@ class SearchParamsController < ApplicationController
   def destroy
     cron_job = Sidekiq::Cron::Job.find "SpiderJob_SP#{@search_param.id}"
     cron_job.disable!
+    cron_job.destroy
     @search_param.destroy
     flash[:notice] = "Search Deleted Succesfully"
     redirect_to current_user
@@ -83,5 +84,5 @@ class SearchParamsController < ApplicationController
       redirect_to current_user
     end
   end
-
+  
 end

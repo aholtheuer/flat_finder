@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_190829) do
+ActiveRecord::Schema.define(version: 2021_10_12_191009) do
 
   create_table "flats", force: :cascade do |t|
     t.string "href"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_190829) do
     t.integer "flat_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "emailed_at"
   end
 
   create_table "search_params", force: :cascade do |t|
