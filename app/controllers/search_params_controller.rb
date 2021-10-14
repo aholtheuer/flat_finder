@@ -22,7 +22,7 @@ class SearchParamsController < ApplicationController
     if @search_param.save
       SpiderJob.perform_later(@search_param.id)
       cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
-                                        cron: '*/10 * * * *', 
+                                        cron: "#{@search_param.updated_at.min} #{@search_param.updated_at.hour} * * *", 
                                         class: 'SpiderJob', 
                                         args: @search_param.id)
       if cron_job.valid?
@@ -45,7 +45,7 @@ class SearchParamsController < ApplicationController
       SearchParamFlat.where({search_param_id: @search_param.id}).destroy_all
       SpiderJob.perform_later(@search_param.id)
       cron_job = Sidekiq::Cron::Job.new(name: "SpiderJob_SP#{@search_param.id}", 
-                                        cron: '*/10 * * * *', 
+                                        cron: "#{@search_param.updated_at.min} #{@search_param.updated_at.hour} * * *", 
                                         class: 'SpiderJob', 
                                         args: @search_param.id)
       if cron_job.valid?
@@ -84,5 +84,5 @@ class SearchParamsController < ApplicationController
       redirect_to current_user
     end
   end
-
+  
 end
