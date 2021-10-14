@@ -10,7 +10,6 @@ class SpiderJob < ApplicationJob
                                     url: ApplicationController.helpers.search_urls(@search_param)[:portal_inmobiliario],
                                     data: { search_param: @search_param } 
     )
-
     # save parsed_hash 
 
     parsed_hash[:flats].each do |flat|

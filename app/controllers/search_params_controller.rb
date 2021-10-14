@@ -76,7 +76,7 @@ class SearchParamsController < ApplicationController
                                       cron: "#{@search_param.updated_at.min} #{@search_param.updated_at.hour} * * *", 
                                       class: 'SpiderJob', 
                                       args: @search_param.id)
-    if cron_job.valid?
+    if cron_job.valid? && !cron_job.exists?
       cron_job.save
     end
   end
