@@ -123,8 +123,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'flatfinder.com',
-    user_name:            'flatfinder.cl',
-    password:             'flatFinder1!',
+    user_name:            ENV['GMAIL_USER'],
+    password:             ENV['GMAIL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true }
 
