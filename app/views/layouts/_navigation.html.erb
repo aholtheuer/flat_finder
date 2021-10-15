@@ -4,7 +4,7 @@
     
       
       <div class="dropdown">
-        <button class="dropbtn">[<%= current_user.username %>]</button>
+        <button class="dropbtn">[<%= current_user.email %>]</button>
         <div class="dropdown-content">
           <%= link_to 'Edit User', edit_user_path(current_user) %>
           <%= link_to 'Delete User', user_path(current_user), method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -13,13 +13,14 @@
 
       <%= link_to "Searches", current_user %>
 
-      <%= link_to "Log Out", logout_path, method: :delete%>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete%>
 
 
   <% else %>
 
-     <%= link_to "Sign Up", signup_path %> or
-        <%= link_to "Log In", login_path %>
+     <%= link_to "Sign Up", new_user_registration_path %> or
+      <%= link_to "Log In", new_user_session_path %>
+      | <%= link_to "Log Out", destroy_user_session_path, method: :delete%>
 
 
   <% end %>

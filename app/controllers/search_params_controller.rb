@@ -1,6 +1,6 @@
 class SearchParamsController < ApplicationController
   before_action :set_search_param, only: [:show, :edit, :update, :destroy]
-  before_action :require_user
+  before_action :user_signed_in?
   before_action :requiere_same_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,12 +10,12 @@ class SearchParamsController < ApplicationController
   end
 
   def show
-    @flats = Flat.select("flats.*, search_param_flats.emailed_at").joins(:search_param_flats).where(search_param_flats: { search_param_id: @search_param.id }).order(:emailed_at)
+    @flats = Flat.select("flats.*, search_param_flats.emailed_at").joins(:search_param_flats).where(search_param_flats: { search_param_id: @search_param.id }).order(emailed_at: :desc)
   end
 
   def new
     @search_param = SearchParam.new
-  end 
+  end
 
   def create
     @search_param = SearchParam.new(search_param_params)
