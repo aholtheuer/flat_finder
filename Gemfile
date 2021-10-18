@@ -29,6 +29,8 @@ gem 'rubocop', '~> 1.22', require: false
 gem 'kimurai'
 gem 'sidekiq'
 gem "sidekiq-cron", "~> 1.1"
+gem 'dotenv'
+gem 'devise'
 
 ################################################################
 

@@ -17,31 +17,41 @@ class PortalSpider < Kimurai::Base
     flats = []
     search_param_flats = []
     @search_param = data[:search_param]
-    response.css('ol.ui-search-layout li a.ui-search-result__image').each do |flat|
-      next unless unique?(:flat_url, flat[:href])
-        begin
-          href_flat = flat[:href][0..flat[:href].index('#position')-1]
-          @flat = Flat.find_by({href: href_flat})
+    page = true
+    while page
+      response.css('ol.ui-search-layout li a.ui-search-result__image').each do |flat|
+        next unless unique?(:flat_url, flat[:href])
+          begin
+            href_flat = flat[:href][0..flat[:href].index('#position')-1]
+            @flat = Flat.find_by({href: href_flat})
 
-          #if flat does not exist then scrape flat page
-          if !@flat
-            flat_item = request_to :parse_flat, url: flat[:href], data: data.merge({href: href_flat})
-            flats << flat_item
-          # if flat exist in db but is not associeted to search_param then hit search_param_flats db
-          elsif !@flat.search_params.exists?({id: @search_param['id']})
-             search_param_flats << @flat.id
-            # @search_param_flat = SearchParamFlat.new({search_param_id: data[:search_param]['id'],
-            #                                           flat_id: @flat.id})
-            # @search_param_flat.save  
-          # else then go to next
-          else 
+            #if flat does not exist then scrape flat page
+            if !@flat
+              flat_item = request_to :parse_flat, url: flat[:href], data: data.merge({href: href_flat})
+              flats << flat_item
+            # if flat exist in db but is not associeted to search_param then save flat_id
+            elsif !@flat.search_params.exists?({id: @search_param['id']})
+              search_param_flats << @flat.id
+            # else then go to next
+            else 
+              next
+            end
+          rescue
+            # flat_item{:href} = href_flat
+            # flat_item{:name} = "Link caido - no logra parsear"
+            puts "No logra parsear"
             next
           end
-        rescue
-          # do something if cannot load flat page
-          next
         end
-    end
+    #next page
+      next_link = response.css('div.ui-search-pagination li.andes-pagination__button--next a[href]')[0]
+      if next_link
+        browser.visit(next_link[:href])
+        response = browser.current_response
+      else 
+        page = false
+      end
+    end 
     { flats: flats, search_param_flats: search_param_flats }
   end
 
@@ -54,14 +64,5 @@ class PortalSpider < Kimurai::Base
     item[:specs] =  specs_elements.css('span')&.map(&:text)&.join('//')
     item[:location] = response.css('div.ui-vip-location__subtitle p')&.text.squish
     item 
-    # @flat = Flat.new(item)
-    # if @flat.save
-    #   @search_param_flat = SearchParamFlat.new({search_param_id: data[:search_param]['id'],
-    #                                              flat_id: @flat.id})
-    #   @search_param_flat.save
-    # else
-    #   #do something else                                          
-    # end
   end
-
 end
