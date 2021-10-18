@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "pages#home"
   # get "signup", to: "users#new"
-  resources :users, except: [:new]
+  resources :users, only: [:show, :index]
   resources :search_params
 
   # get "login", to: "sessions#new"
