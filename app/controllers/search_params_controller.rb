@@ -45,9 +45,6 @@ class SearchParamsController < ApplicationController
   end
 
   def destroy
-    cron_job = Sidekiq::Cron::Job.find "SpiderJob_SP#{@search_param.id}"
-    cron_job.disable!
-    cron_job.destroy
     @search_param.destroy
     flash[:notice] = "Search Deleted Succesfully"
     redirect_to current_user
