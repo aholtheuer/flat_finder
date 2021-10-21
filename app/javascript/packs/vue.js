@@ -31,7 +31,7 @@
 //   <app></app>
 // </div>
 
-
+// import "stylesheets/application" // Add this line
 import Vue from 'vue/dist/vue.esm'
 import Flat from '../flat.vue'
 import Flats from '../flats.vue'
@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 })
+
+import "stylesheets/application" // Add this line
 
 
 //
