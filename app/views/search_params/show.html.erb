@@ -1,7 +1,8 @@
 
-<h1>Busqueda: <%= @search_param.title %></h1>
 
-<%= render 'layouts/searches', obj: [@search_param] %>
+
+
+<search-param search_param_json= "<%=@search_param.to_json%>"></search-param>
 
 <%= link_to 'Back', current_user %>
 

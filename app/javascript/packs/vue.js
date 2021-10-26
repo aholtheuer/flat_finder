@@ -35,6 +35,7 @@
 import Vue from 'vue/dist/vue.esm'
 import Flat from '../flat.vue'
 import Flats from '../flats.vue'
+import SearchParam from '../search_param.vue'
 
 // Vue.component('app', App)
 document.addEventListener('DOMContentLoaded', () => {
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     components: { 
       Flat,
       Flats, 
+      SearchParam,
     }
   })
 })

@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-2 text-black hover:bg-gray-100 p-10 rounded-lg shadow-lg max-w-xl mx-auto">
-    <a class='hover:text-current' :href="this.flatObject.href" target='_blank'>
+    <a class='visited:text-gray-500' :href="this.flatObject.href" target='_blank'>
       <div class="block py-1 border-black-100 text-center">
          Enviado hace {{ time_ago }} 
       </div>
@@ -58,12 +58,11 @@ export default {
           liked: this.flatObject.liked,
         })
         .then(response => {
-        console.log(response);
-        this.initialize();
+          console.log(response);
         })
         .catch(error => {
-        console.log(error);
-      });
+          console.log(error);
+        });
     },
   }
 
