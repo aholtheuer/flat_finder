@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index]
   resources :search_params
 
+  namespace :api do
+    namespace :v1 do
+      put "search_param_flats/:id", to: "search_param_flats#update"
+    end
+  end
   # get "login", to: "sessions#new"
   # post "login", to: "sessions#create"
   # delete "logout", to: "sessions#destroy"
