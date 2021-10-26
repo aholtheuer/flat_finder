@@ -4,14 +4,11 @@
 <%= render 'layouts/searches', obj: [@search_param] %>
 
 <%= link_to 'Back', current_user %>
+
 <h2>Flats Listing New</h2>
 <% @flats.each do |f| %> 
-  <flat flat_json= "<%=f.to_json %>"></flat>
+  <flat flat_json= "<%=f.to_json %>" time_ago="<%=time_ago_in_words(f.emailed_at)%>"></flat>
 <% end %>
-
-
-<h2>Flats Listing later</h2>
-<%= render 'layouts/flats', obj: @flats %>
 
 <%= link_to 'Back', current_user %>
 
