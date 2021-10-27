@@ -13,9 +13,10 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
-    <%= render 'layouts/alert' %>
+
     <div class='content' data-behavior="vue">
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/alert' %>
       <%= yield %>
     </div>
   </body>

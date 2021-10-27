@@ -37,6 +37,7 @@ import Flat from '../flat.vue'
 import Flats from '../flats.vue'
 import SearchParam from '../search_param.vue'
 import SpForm from '../sp_form.vue'
+import Navbar from '../navbar.vue'
 
 // Vue.component('app', App)
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Flats, 
       SearchParam,
       SpForm,
+      Navbar,
     }
   })
 })
