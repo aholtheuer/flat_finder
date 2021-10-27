@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :set_user, only: [:show]
   before_action :user_signed_in?
   before_action :requiere_same_user, except: [:index]

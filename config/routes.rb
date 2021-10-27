@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
   root "pages#home"
-  # get "signup", to: "users#new"
-  resources :users, only: [:show, :index]
+  # get "users/:id", to: "users#show"
+  # get "users", to: "users#index"
+  devise_for :users
   resources :search_params
+  resources :users, only: [:show, :index]
 
   namespace :api do
     namespace :v1 do
