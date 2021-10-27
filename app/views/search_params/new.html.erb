@@ -1,5 +1,19 @@
 <h1>New Search</h1>
 
-<%= render 'form', obj: @search_param %>
+  <% if @search_param.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@search_param.errors.count, "error") %> prohibited this search from being saved:</h2>
+
+      <ul>
+        <% @search_param.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<sp-form></sp-form>
+
+<%# render 'form', obj: @search_param %>
 
 <%= link_to 'Back', search_params_path %>

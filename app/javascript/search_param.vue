@@ -35,27 +35,33 @@ export default {
   data: function () {
     return {
       searchParamObject: {},
+      data_user_id: ""
     }
   },
   props: {
     search_param_json: String,
+    user_id: String,
   },
   created() {
     this.searchParamObject = JSON.parse(this.search_param_json)
+    this.data_user_id = this.user_id
   },
   methods: {
     deleteSearchParam() {
       confirm("Are you sure you want to delete this search?"); 
-      console.log("Delete")
+      console.log(`Delete`)
       axios
         .delete(`http://localhost:3000/api/v1/search_params/${this.searchParamObject.id}`)
         .then(response => {
           console.log(response);
-          console.log(response.data.json);
-          alert(response.data.json);
+          console.log(response.data);
+          window.location.href = `/users/${response.data.user_id}`
           })
         .catch(error => {
+          console.log('error')
           console.log(error);
+          console.log(error.response);
+          console.log(error.response);
         });
     }
   }

@@ -21,6 +21,7 @@ class SearchParamsController < ApplicationController
   end
 
   def create
+    byebug
     @search_param = SearchParam.new(search_param_params)
     @search_param.user = current_user
     if @search_param.save

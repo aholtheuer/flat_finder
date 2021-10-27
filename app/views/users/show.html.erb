@@ -3,7 +3,7 @@
 <%= link_to 'New', new_search_param_path %>
 
 <% @search_params.each do |sp| %> 
-  <search-param search_param_json= "<%=sp.to_json%>"></search-param>
+  <search-param search_param_json= "<%=sp.to_json%>" user_id="<%=sp.user.id %>"></search-param>
 <% end %>
 
 

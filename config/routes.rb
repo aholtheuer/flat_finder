@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       put "search_param_flats/:id", to: "search_param_flats#update"
       delete "search_params/:id", to: "search_params#destroy"
+      post "search_params", to: "search_params#create"
     end
   end
   # get "login", to: "sessions#new"

@@ -9,9 +9,13 @@ class SearchParam < ApplicationRecord
   private
 
   def disable_cron_job
-    cron_job = Sidekiq::Cron::Job.find "SpiderJob_SP#{self.id}"
-    cron_job.disable!
-    cron_job.destroy
+    begin
+      cron_job = Sidekiq::Cron::Job.find "SpiderJob_SP#{self.id}"
+      cron_job.disable!
+      cron_job.destroy
+    rescue 
+      puts "------------No existe Cron Job------------------------"
+    end
   end
 
 end
