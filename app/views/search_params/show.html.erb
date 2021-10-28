@@ -1,10 +1,19 @@
-<h1>Busqueda: <%= @search_param.title %></h1>
 
-<%= render 'layouts/searches', obj: [@search_param] %>
 
-<h2>Flats</h2>
-<%= link_to 'Back', current_user %>
 
-<%= render 'layouts/flats', obj: @flats %>
+
+<search-param search_param_json= "<%=@search_param.to_json%>"></search-param>
+
 
 <%= link_to 'Back', current_user %>
+
+<h2>Flats Listing New</h2>
+<div class='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 mx-2'>
+  <% @flats.each do |f| %> 
+    <flat flat_json= "<%=f.to_json %>" time_ago="<%=time_ago_in_words(f.emailed_at)%>"></flat>
+  <% end %>
+</div>
+
+
+<%= link_to 'Back', current_user %>
+

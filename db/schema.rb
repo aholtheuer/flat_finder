@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_145229) do
+ActiveRecord::Schema.define(version: 2021_10_26_124354) do
 
   create_table "flats", force: :cascade do |t|
     t.string "href"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_145229) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "emailed_at"
+    t.boolean "liked", default: false
   end
 
   create_table "search_params", force: :cascade do |t|
