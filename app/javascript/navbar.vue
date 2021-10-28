@@ -9,12 +9,12 @@
         [{{ email }}]
       </button>
       <div :class="open ? 'block': 'hidden'" class="w-full flex flex-col px-2 text-sm sm:w-auto">
-        <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">
-          Docs
+        <a href= "/users/edit" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">
+          Edit your Profile
         </a>
-        <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">
-          Examples
-        </a>
+        <button v-on:click="deleteUser()" class="no-underline block mt-4 text-left sm:inline-block sm:mt-0 text-teal-lighter hover:text-white mr-4">
+          Cancel your Subscription
+        </button>
         <a href="#responsive-header" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-white">
           Blog
         </a>
@@ -28,18 +28,36 @@
 </template>
 
 <script>
+import ax from 'packs/axios';
 export default {
   name: 'Navbar',
   data: function () {
     return {
       open: false,
-      email: "findmyin@nabvar-vue.javascript"
+      email: "findmyin@nabvar-vue.javascript",
+      user_id: 1,
     }
   },
   methods: {
     toggle() {
     	this.open = !this.open
-    }
+    },
+    deleteUser() {
+      console.log("Delete")
+      ax
+        .delete(`http://localhost:3000/users`)
+        .then(response => {
+          console.log(response);
+          console.log(response.data);
+          window.location.href = `/users/sign_in`
+          })
+        .catch(error => {
+          console.log('error')
+          console.log(error);
+          console.log(error.response);
+          console.log(error.response.data);
+        });
+    },
   }
 }
 </script>
