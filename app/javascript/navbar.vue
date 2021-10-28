@@ -15,6 +15,9 @@
         <a href="/users/sign_out"  class="px-1 hover:text-white ">
           Log Out
         </a>
+        <a href="/favorites"  class="px-1 hover:text-white ">
+          Favoritos
+        </a>
       </div>
 
     </div>

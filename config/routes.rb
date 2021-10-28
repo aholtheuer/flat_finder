@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root "pages#home"
-  # get "users/:id", to: "users#show"
-  # get "users", to: "users#index"
+  get "favorites", to: "pages#favorites"
   devise_for :users
   resources :search_params
   resources :users, only: [:show, :index]

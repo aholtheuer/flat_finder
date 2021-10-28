@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-2 text-black hover:bg-gray-100 p-10 rounded-lg shadow-lg max-w-xl mx-auto my-2">
+  <div v-if=" this.current_page !== '/favorites' || this.flatObject.liked " class="space-y-2 text-black hover:bg-gray-100 p-10 rounded-lg shadow-lg max-w-xl mx-auto my-2">
     <a class='visited:text-gray-500' :href="this.flatObject.href" target='_blank'>
       <div class="block py-3 text-sm border-black-100 text-center">
          Enviado hace {{ time_ago }} 
@@ -45,9 +45,11 @@ export default {
   props: {
     flat_json: String,
     time_ago: String,
+    current_page: String,
   },
   created() {
-    this.flatObject = JSON.parse(this.flat_json)
+    this.flatObject = JSON.parse(this.flat_json);
+    console.log(this.current_page)
   },
   methods: {
     likeFlat() {
