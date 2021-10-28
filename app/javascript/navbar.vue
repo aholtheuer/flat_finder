@@ -12,11 +12,11 @@
         <a :href="`/users/${userObject.id}`"  class="px-1 hover:text-white ">
           Searches
         </a>
-        <a href="/users/sign_out"  class="px-1 hover:text-white ">
-          Log Out
-        </a>
         <a href="/favorites"  class="px-1 hover:text-white ">
           Favoritos
+        </a>
+        <a href="/users/sign_out"  class="px-1 hover:text-white ">
+          Log Out
         </a>
       </div>
 

@@ -1,5 +1,58 @@
 <template>
-  <div class="space-y-2 text-black hover:bg-gray-100 p-10 rounded-xl shadow-xl max-w-xxl mx-auto">
+  <div class="flex flex-nowrap justify-start bg-gray-100 mt-10 m-b5 mr-10 ml-5 md:w-max gap-2 p-10 rounded-xl hover:bg-gray-200">
+    
+    <div class='flex-grow-0 sm:w-44 font-black'>
+      {{ searchParamObject.title }}
+    </div>
+    <div class="flex flex-col gap-4 justify-start"> 
+      <div class='flex flex-wrap gap-6 justify between text-sm sm:text-center content-between'>
+        <div >
+          <p class="font-black text-gray-600">  Comuna </p> 
+          <p> {{ searchParamObject.comuna }}  </p>
+        </div>
+
+        <div v-if="searchParamObject.bedroom !== null" > 
+          <p class="font-black text-gray-600">  Habitaciones </p> 
+          <p> {{ searchParamObject.bedroom }}  </p>
+        </div>
+
+        <div v-if="searchParamObject.bath !== null" >
+          <p class="font-black text-gray-600">  Baños </p> 
+          <p> {{ searchParamObject.bath }}  </p>
+        </div>
+
+        <div v-if="searchParamObject.price_min !== null" >
+          <p class="font-black text-gray-600">  Precio Min </p> 
+          <p> ${{ Intl.NumberFormat('de-DE').format(searchParamObject.price_min) }}  </p>
+        </div>
+
+        <div v-if="searchParamObject.price_max !== null" >
+          <p class="font-black text-gray-600">  Precio Max </p> 
+          <p> ${{ Intl.NumberFormat('de-DE').format(searchParamObject.price_max) }}  </p>
+        </div>
+      </div>
+        
+      <div class="flex flex-rows flex-wrap gap-1 ">
+        <a class="bg-blue-400 hover:bg-blue-600 place-self-center text-white font-black rounded-lg text-xs text-center px-2 py-2" :href="`/search_params/${searchParamObject.id}`">
+          Ver Flats!
+        </a>
+        <a class="bg-blue-400 hover:bg-blue-600 place-self-center text-white font-black rounded-lg text-xs text-center px-2 py-2" :href="`/search_params/${searchParamObject.id}/edit`">
+          Editar
+        </a>
+        <a class="bg-blue-400 hover:bg-blue-600 place-self-center text-white font-black rounded-lg text-xs text-center px-2 py-2" :href="'/search_params/' + searchParamObject.id">
+          Ver Flats!
+        </a>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
+
+  <!-- <div class="space-y-2 text-black hover:bg-gray-100 p-10 rounded-xl shadow-xl max-w-xxl mx-auto">
     <a class='hover:text-current' :href="'/search_params/' + searchParamObject.id">
       <span class="flex space-x-4"> 
         <div class="flex-2 text-center w-40">
@@ -20,12 +73,9 @@
     </a>
     <button v-on:click="deleteSearchParam()" 
         class="bg-red-400 text-white font-bold py-2 px-4 rounded inline-flex items-center hover:text-white hover:bg-red-500" >
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" :fill="this.button_color">
-          <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-        </svg> -->
       <span>Delete</span>
     </button>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -35,16 +85,13 @@ export default {
   data: function () {
     return {
       searchParamObject: {},
-      data_user_id: ""
     }
   },
   props: {
     search_param_json: String,
-    user_id: String,
   },
   created() {
     this.searchParamObject = JSON.parse(this.search_param_json)
-    this.data_user_id = this.user_id
   },
   methods: {
     deleteSearchParam() {
