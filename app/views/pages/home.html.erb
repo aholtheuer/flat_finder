@@ -2,4 +2,19 @@
   <h1 class="font-black text-6xl text-center"> HOME </h1>
 </div>
 
+<% if current_user.nil? %>
+  <div class='flex px-4 justify-evenly mt-4'>
+    <div>
+      <a href="/users/sign_up" >
+        Sign-Up
+      </a>
+    </div>
+    <div>
+      <a href="/users/sign_in">
+        Sign-In
+      </a>
+    </div>
+  </div>
+<% end %>
+
 

@@ -9,7 +9,7 @@
               <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-4">
                   <label for="title" class="block text-sm font-medium text-gray-700">Nombre Busqueda</label>
-                  <input type="text" name="title" id="title" autocomplete="given-name" class="mt-1 w-full py-2 px-3 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md">
+                  <input type="text" name="title" id="title" autocomplete="given-name" placeholder="Ingresa un Nombre para recordar tu busqueda" class="mt-1 w-full py-2 px-3 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md">
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
