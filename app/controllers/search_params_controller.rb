@@ -20,18 +20,18 @@ class SearchParamsController < ApplicationController
     @search_param = SearchParam.new
   end
 
-  def create
-    byebug
-    @search_param = SearchParam.new(search_param_params)
-    @search_param.user = current_user
-    if @search_param.save
-      run_and_schedule_spider_job
-      flash[:notice] = "Search Created Succesfull! A Spider is entring the portals :)"
-      redirect_to @search_param.user
-    else
-      render 'new'
-    end
-  end 
+  # def create
+  #   byebug
+  #   @search_param = SearchParam.new(search_param_params)
+  #   @search_param.user = current_user
+  #   if @search_param.save
+  #     run_and_schedule_spider_job
+  #     flash[:notice] = "Search Created Succesfull! A Spider is entring the portals :)"
+  #     redirect_to @search_param.user
+  #   else
+  #     render 'new'
+  #   end
+  # end 
 
   def edit
   end

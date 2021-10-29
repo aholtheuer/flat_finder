@@ -12,8 +12,6 @@
     </div>
   <% end %>
 
-<sp-form></sp-form>
-
-<%# render 'form', obj: @search_param %>
+<sp-form search_param_json= "<%=@search_param.to_json%>" :post="true"></sp-form>
 
 <%= link_to 'Back', search_params_path %>

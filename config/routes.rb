@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       delete "search_params/:id", to: "search_params#destroy"
       post "search_params", to: "search_params#create"
       delete "users/:id", to: "users#destroy"
+      put "search_params/:id", to: "search_params#update"
     end
   end
   # get "login", to: "sessions#new"

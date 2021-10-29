@@ -39,43 +39,13 @@
         <a class="bg-blue-400 hover:bg-blue-600 place-self-center text-white font-black rounded-lg text-xs text-center px-2 py-2" :href="`/search_params/${searchParamObject.id}/edit`">
           Editar
         </a>
-        <a class="bg-blue-400 hover:bg-blue-600 place-self-center text-white font-black rounded-lg text-xs text-center px-2 py-2" :href="'/search_params/' + searchParamObject.id">
-          Ver Flats!
-        </a>
+        <button v-on:click="deleteSearchParam()" 
+            class="bg-red-400 hover:bg-red-600 place-self-center text-white font-black rounded-lg text-xs text-center px-2 py-2" >
+          <span>Delete</span>
+        </button>
       </div>
     </div>
-
-
-
-
-
-
   </div>
-
-  <!-- <div class="space-y-2 text-black hover:bg-gray-100 p-10 rounded-xl shadow-xl max-w-xxl mx-auto">
-    <a class='hover:text-current' :href="'/search_params/' + searchParamObject.id">
-      <span class="flex space-x-4"> 
-        <div class="flex-2 text-center w-40">
-          <h1 class="font-black">{{ searchParamObject.title }}</h1>
-        </div>
-        <div class="flex-1 justify-center space-y-2">
-          <p>{{ `Comuna: ${ searchParamObject.comuna }` }}</p>
-          <p>{{ `Habitaciones: ${ searchParamObject.bedroom || '--' }` }}</p>
-          <p>{{ `Baños: ${ searchParamObject.bath || '--' }` }}</p>
-          <p>{{ `Precio Mínimo: ${ searchParamObject.price_min || '--' }` }}</p>
-          <p>{{ `Precio Máximo: ${ searchParamObject.price_max || '--' }` }}</p>
-        </div>
-      </span>
-    </a>
-    <a class="inline-flex bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center hover:text-current" 
-        :href="'/search_params/' + searchParamObject.id + '/edit'">
-      Edit
-    </a>
-    <button v-on:click="deleteSearchParam()" 
-        class="bg-red-400 text-white font-bold py-2 px-4 rounded inline-flex items-center hover:text-white hover:bg-red-500" >
-      <span>Delete</span>
-    </button>
-  </div> -->
 </template>
 
 <script>

@@ -1,5 +1,7 @@
 <h1>Update Search</h1>
 
-<%= render 'form', obj: @search_param %>
+<sp-form search_param_json= "<%=@search_param.to_json%>"></sp-form>
+
+<%# render 'form', obj: @search_param %>
 
 <%= link_to 'Back', current_user %>

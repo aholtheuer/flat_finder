@@ -2,31 +2,46 @@ module Api
   module V1  
     class SearchParamsController < ApplicationController
       skip_before_action :verify_authenticity_token
-      before_action :set_search_param, only: [:destroy]
+      before_action :set_search_param, except: [:create]
       before_action :user_signed_in?
-      before_action :requiere_same_user, only: [:destroy]
+      before_action :requiere_same_user, except: [:create]
 
       def destroy
         if @search_param.destroy
           flash.notice = "Search deleted succesfully!"
           render json: { json: 'Search Param was successfully deleted.', user_id: current_user.id}
         else 
-          byebug
           render json: { json: @search_param.errors, status: :unprocessable_entity }
         end
       end
 
       def create
+        byebug
         @search_param = SearchParam.new(search_param_params)
         @search_param.user = current_user
         if @search_param.save
           run_and_schedule_spider_job
           flash[:notice] = "Search Created Succesfull! A Spider is entring the portals :)"
-          redirect_to @search_param.user
+          render json: { json: 'Search Param was successfully deleted.', user_id: current_user.id}
         else
+          #Fix this
           render 'new'
         end
       end 
+
+      def update
+        if @search_param.update(search_param_params)
+          # Flats are not longer representative of that search.
+          SearchParamFlat.where({search_param_id: @search_param.id}).destroy_all
+          run_and_schedule_spider_job
+          flash[:notice] = "Search Updated Succesfully! A Spider is entring the portals :)"
+          render json: { json: 'Search Param was successfully deleted.', user_id: current_user.id}
+        else
+          #Fix this
+          render('edit')
+        end
+      end
+
 
       private
 
